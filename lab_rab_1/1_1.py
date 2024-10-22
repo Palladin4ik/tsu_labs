@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import random
 
-# Генерация случайного числа в диапазоне [-10, 10]
-A = random.randint(-10, 10)
-
-# Вывод числа на консоль
-print("Число A:", A)
+try:
+    A = random.randint(-10, 10)
+    print("Число A:", A)
+except Exception as e:
+    import sys
+    print(f"Ошибка: {e}", file=sys.stderr)
