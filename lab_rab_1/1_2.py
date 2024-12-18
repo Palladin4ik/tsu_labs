@@ -3,7 +3,8 @@ import sys
 import random
 
 try:
-    A = int(input("Введите число A: "))
+    data = input()
+    A = int(data)
     B = random.randint(-10, 10)
     
     result = A / B
