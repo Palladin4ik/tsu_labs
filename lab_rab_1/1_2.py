@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
+import sys
 import random
 
 try:
     A = int(input("Введите число A: "))
     B = random.randint(-10, 10)
-
-    if B == 0:
-        raise ZeroDivisionError("Деление на ноль!")
     
     result = A / B
-    print(f"Число B: {B}")
-    print(f"Результат A / B: {result}")
-except ZeroDivisionError as zde:
-    print(f"Ошибка: {zde}", file=sys.stderr)
-except ValueError:
-    print("Ошибка: некорректный ввод числа A!", file=sys.stderr)
-except Exception as e:
-    print(f"Ошибка: {e}", file=sys.stderr)
+    
+except ValueError as e:
+    # Логирование ошибки в файл
+    with open("error.txt", "a") as error_file:
+        error_file.write(f"Ошибка преобразования данных в число: {e}\n")
+    print("Ошибка: неверное значение A", file=sys.stderr)
+except ZeroDivisionError as e:
+    # Логирование ошибки в файл
+    with open("error.txt", "a") as error_file:
+        error_file.write(f"Ошибка деления: делитель равен нулю: {e}\n")
+    print("Ошибка: деление на ноль!", file=sys.stderr)
+else:
+    print(result)  # Вывод результата, если ошибок не произошло
