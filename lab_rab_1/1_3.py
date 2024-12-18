@@ -12,13 +12,12 @@ try:
     result = math.sqrt(A)
 
     with open("output.txt", "w") as file:
-        file.write(f"Квадратный корень числа {A}: {result}\n")
+        file.write(f"{result}\n")
 
-    print("Результат записан в файл output.txt")
 except ValueError as ve:
     with open("error.txt", "a") as error_file:
         error_file.write(f"Ошибка преобразования данных в число: {ve}\n")
-    print(f"Ошибка: {ve}", file=sys.stderr)
+    print(f"Ошибка преобразования данных в число: {ve}", file=sys.stderr)
 except IOError as ioe:
     with open("error.txt", "a") as error_file:
         error_file.write(f"Ошибка записи в файл: {ioe}\n")
